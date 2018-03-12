@@ -19,6 +19,7 @@
         <activity android:name=".Firstv"/>
         <activity android:name=".Secondv"/>
         <activity android:name=".Thirdv"/>
+        <activity android:name=".Aboutus"/>
     </application>
 
 </manifest>
