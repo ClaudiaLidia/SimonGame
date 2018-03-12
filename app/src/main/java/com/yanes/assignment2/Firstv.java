@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 /**
  * Claudia and Lidia Yanes Garcia
- * Assignment 2
+ * Assignment 22
  * CSCI 4020
  **/
 
