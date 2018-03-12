@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -32,6 +33,8 @@ public class Secondv extends Activity implements View.OnClickListener {
     int count1 = 1;
     ImageButton im;
     boolean equal = true;
+    int high_score = 0;
+    int score = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,12 +118,16 @@ public class Secondv extends Activity implements View.OnClickListener {
                 equal = false;
                 break;
             }}
-
+        TextView tv = (TextView) findViewById(R.id.text);
         if(equal==true){
+            score++;
+            if(high_score<score){
+                high_score=score;
+            }
             sequence.clear();
             my_sequence.clear();
-            Toast.makeText(this, "Win" , Toast.LENGTH_SHORT).show();
-            count1 ++;
+            tv.setText("Highest score= "+ high_score);
+            Toast.makeText(this, "Level "+ score, Toast.LENGTH_SHORT).show();            count1 ++;
             updateTask = new UpdateTask();
             updateTask.execute();
 
@@ -128,6 +135,7 @@ public class Secondv extends Activity implements View.OnClickListener {
             Toast.makeText(this, "Lost", Toast.LENGTH_SHORT).show();
             count1 = 1;
             start=0;
+            score=0;
             equal=true;
             sequence.clear();
             my_sequence.clear();
