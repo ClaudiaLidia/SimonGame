@@ -1,6 +1,7 @@
 package com.yanes.assignment2;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -201,7 +202,18 @@ public class Thirdv extends Activity implements View.OnClickListener{
                     repe = true;
                 }
             }
+        }
 
-        }}
+    @Override
+    public void onBackPressed() {
+        String str_high = Integer.toString(high_score);
+        str_high = str_high.trim();
+        MainActivity.Highest_score3= str_high;
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(MainActivity.Highest_score3, str_high);
+        setResult(RESULT_OK, intent);
+        super.onBackPressed();
+    }
+}
 
 
