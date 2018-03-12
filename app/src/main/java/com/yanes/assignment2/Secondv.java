@@ -1,6 +1,7 @@
 package com.yanes.assignment2;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -186,5 +187,15 @@ public class Secondv extends Activity implements View.OnClickListener {
             }
         }
 
+    }
+    @Override
+    public void onBackPressed() {
+        String str_high = Integer.toString(high_score);
+        str_high = str_high.trim();
+        Intent intent = new Intent(this, MainActivity.class);
+        MainActivity.Highest_score2= str_high;
+        intent.putExtra(MainActivity.Highest_score2, str_high);
+        setResult(RESULT_OK, intent);
+        super.onBackPressed();
     }
 }
