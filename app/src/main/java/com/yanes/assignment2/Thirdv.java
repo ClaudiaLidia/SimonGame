@@ -2,6 +2,8 @@ package com.yanes.assignment2;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.AudioAttributes;
+import android.media.SoundPool;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,7 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 /**
  * Claudia and Lidia Yanes Garcia
@@ -22,6 +26,8 @@ import java.util.Random;
  **/
 
 public class Thirdv extends Activity implements View.OnClickListener{
+    private SoundPool soundPool;
+    private Set<Integer> soundLoaded;
     int[] dcolor = {R.drawable.byellow, R.drawable.bblue, R.drawable.bred, R.drawable.bgreen};
     int[] dcoloroff = {R.drawable.byellowoff, R.drawable.bblueoff, R.drawable.bredoff, R.drawable.bgreenoff};
     int[] ids = {R.id.iyellow, R.id.iblue, R.id.ired, R.id.igreen};
@@ -34,6 +40,11 @@ public class Thirdv extends Activity implements View.OnClickListener{
     int count2=700;
     ImageButton im;
     boolean equal= true;
+    int bell;
+    int bell1;
+    int bell2;
+    int bell3;
+    int []bells={bell, bell1, bell2, bell3};
     int high_score = 0;
     int score = 0;
 
@@ -42,16 +53,11 @@ public class Thirdv extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
 
+        soundLoaded = new HashSet<Integer>();
+
         Button button = (Button) findViewById(R.id.bfstart);
         button.setOnClickListener(this);
-        ImageButton imageButton = (ImageButton) findViewById(R.id.iyellow);
-        imageButton.setOnClickListener(this);
-        imageButton = (ImageButton) findViewById(R.id.iblue);
-        imageButton.setOnClickListener(this);
-        imageButton = (ImageButton) findViewById(R.id.ired);
-        imageButton.setOnClickListener(this);
-        imageButton = (ImageButton) findViewById(R.id.igreen);
-        imageButton.setOnClickListener(this);
+
 
     }
 
@@ -64,6 +70,50 @@ public class Thirdv extends Activity implements View.OnClickListener{
             updateTask.cancel(true);
             updateTask = null;
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        AudioAttributes.Builder attrBuilder= new AudioAttributes.Builder();
+        attrBuilder.setUsage(AudioAttributes.USAGE_GAME);
+
+        SoundPool.Builder spBuilder= new SoundPool.Builder();
+        spBuilder.setAudioAttributes(attrBuilder.build());
+        spBuilder.setMaxStreams(2);
+        soundPool = spBuilder.build();
+
+        soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+            @Override
+            public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+                if(status==0){
+                    soundLoaded.add(sampleId);
+                    Log.i("SOUND", "Sound loaded"+ sampleId);
+                }else {
+                    Log.i("SOUND", "Error cannot load sound status"+ status);
+
+                }
+            }
+        });
+        bell= soundPool.load(this, R.raw.bell,1);
+        bell1= soundPool.load(this, R.raw.bell1,1);
+        bell2= soundPool.load(this, R.raw.bell2,1);
+        bell3= soundPool.load(this, R.raw.bell3,1);
+
+        bells= new int[]{bell, bell1, bell2, bell3};
+
+
+
+        ImageButton imageButton = (ImageButton) findViewById(R.id.iyellow);
+        imageButton.setOnClickListener(this);
+        imageButton = (ImageButton) findViewById(R.id.iblue);
+        imageButton.setOnClickListener(this);
+        imageButton = (ImageButton) findViewById(R.id.ired);
+        imageButton.setOnClickListener(this);
+        imageButton = (ImageButton) findViewById(R.id.igreen);
+        imageButton.setOnClickListener(this);
+
     }
 
 
@@ -99,7 +149,8 @@ public class Thirdv extends Activity implements View.OnClickListener{
         } else if ((view.getId() == R.id.igreen)) {
             ii=3;
         }
-        final int iii=ii;
+            playSound(bells[ii]);
+            final int iii=ii;
         my_sequence.add(iii);
 
         im= (ImageButton) findViewById(ids[iii]);
@@ -117,6 +168,12 @@ public class Thirdv extends Activity implements View.OnClickListener{
             }
         }
 }
+    private void playSound(int soundId){
+        if(soundLoaded.contains(soundId)){
+            soundPool.play(soundId, 1.0f, 1.0f, 0,0,1.0f);
+        }
+    }
+
     public void compare(){
         String s1=my_sequence.toString();
         String s2=sequence.toString();
@@ -192,6 +249,7 @@ public class Thirdv extends Activity implements View.OnClickListener{
             @Override
             protected void onProgressUpdate(Integer... values) {
                 if (repe == true) {
+                    playSound(bells[values[0]]);
                     im= (ImageButton) findViewById(ids[values[0]]);
                     im.setImageResource(dcolor[values[0]]);
                     repe =false;
