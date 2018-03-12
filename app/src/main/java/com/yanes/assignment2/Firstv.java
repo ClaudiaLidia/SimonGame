@@ -1,6 +1,7 @@
 package com.yanes.assignment2;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.media.AudioAttributes;
 import android.media.SoundPool;
 import android.os.AsyncTask;
@@ -44,6 +45,9 @@ public class Firstv extends Activity implements View.OnClickListener {
     int count1=1;
     ImageButton im;
     boolean equal= true;
+
+    int high_score = 0;
+    int score = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,9 +181,15 @@ public class Firstv extends Activity implements View.OnClickListener {
                 break;
             }}
 
-
+        TextView tv = (TextView) findViewById(R.id.text);
 
         if(equal==true){
+            score++;
+            if(high_score<score){
+                high_score=score;
+            }
+            tv.setText("The highest score is: "+ high_score);
+            Toast.makeText(this, "Level "+ score, Toast.LENGTH_SHORT).show();
             count1++;
             updateTask = new UpdateTask();
             updateTask.execute();
@@ -187,6 +197,7 @@ public class Firstv extends Activity implements View.OnClickListener {
         }else {
             Toast.makeText(this, "Lost", Toast.LENGTH_SHORT).show();
             start=0;
+            score=0;
             equal=true;
             sequence.clear();
             my_sequence.clear();
@@ -240,5 +251,19 @@ public class Firstv extends Activity implements View.OnClickListener {
             }
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        //Toast.makeText(this, "You cannot leave this page until the game is over!", Toast.LENGTH_SHORT).show();
+        String str_high = Integer.toString(high_score);
+        str_high = str_high.trim();
+        MainActivity.Highest_score1= str_high;
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(MainActivity.Highest_score1, str_high);
+        setResult(RESULT_OK, intent);
+        super.onBackPressed();
+    }
+
+
 
 }
