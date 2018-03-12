@@ -3,6 +3,7 @@ package com.yanes.assignment2;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -76,9 +77,35 @@ public class Secondv extends Activity implements View.OnClickListener {
             } else {
                 Log.i("START", "task is already running");
             }
+        }else if (view.getId() != R.id.bfstart && my_sequence.size()<sequence.size()&& (start==1) && updateTask.getStatus() == AsyncTask.Status.FINISHED) {
+            int ii=0;
+            if ((view.getId() == R.id.iyellow)) {
+                ii=0;
+            } else if ((view.getId() == R.id.iblue)) {
+                ii=1;
+            } else if ((view.getId() == R.id.ired)) {
+                ii=2;
+            } else if ((view.getId() == R.id.igreen)) {
+                ii=3;
+            }
+            final int iii=ii;
+            my_sequence.add(iii);
+
+            im= (ImageButton) findViewById(ids[iii]);
+            im.setImageResource(dcolor[iii]);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    im= (ImageButton) findViewById(ids[iii]);
+                    im.setImageResource(dcoloroff[iii]);
+                }
+            },500);
+
         }
 
     }
+
 
     class UpdateTask extends AsyncTask<Void, Integer, Void> {
         int i = 0;
