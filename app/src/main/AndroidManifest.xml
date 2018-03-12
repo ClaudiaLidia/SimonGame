@@ -21,6 +21,7 @@
         <activity android:name=".Thirdv" android:screenOrientation="portrait"/>
         <activity android:name=".Aboutus" android:screenOrientation="portrait"/>
         <activity android:name=".Rules" android:screenOrientation="portrait"/>
+        <activity android:name=".Credits" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
