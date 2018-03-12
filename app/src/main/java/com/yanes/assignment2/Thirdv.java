@@ -108,10 +108,48 @@ public class Thirdv extends Activity implements View.OnClickListener{
                 im.setImageResource(dcoloroff[iii]);
             }
         },500);
+            if (my_sequence.size()==sequence.size()){
+                compare();
+            }
+        }
+}
+    public void compare(){
+        String s1=my_sequence.toString();
+        String s2=sequence.toString();
+        for (int a = 0; a < sequence.size(); a++) {
+            if (!(my_sequence.get(a) == sequence.get(a))) {
+                equal = false;
+                break;
+            }}
 
+
+        if(equal==true){
+
+            sequence.clear();
+            my_sequence.clear();
+
+            Toast.makeText(this, "Win", Toast.LENGTH_SHORT).show();
+
+            if (count2 == 50) {
+                count1++;
+                count2 = 700;
+            }
+
+            count2-=50;
+            updateTask = new UpdateTask();
+            updateTask.execute();
+
+        }else {
+            Toast.makeText(this, "Lost", Toast.LENGTH_SHORT).show();
+            count1 = 3;
+            start=0;
+            count2=700;
+            sequence.clear();
+            my_sequence.clear();
+            equal=true;
+        }
     }
 
-}
         class UpdateTask extends AsyncTask<Void,Integer,Void> {
             int i=0;
             @Override
