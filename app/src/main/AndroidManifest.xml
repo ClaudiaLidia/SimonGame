@@ -18,7 +18,7 @@
         </activity>
         <activity android:name=".Firstv" android:screenOrientation="portrait"/>
         <activity android:name=".Secondv"/>
-        <activity android:name=".Thirdv"/>
+        <activity android:name=".Thirdv" android:screenOrientation="portrait"/>
         <activity android:name=".Aboutus" android:screenOrientation="portrait"/>
         <activity android:name=".Rules" android:screenOrientation="portrait"/>
     </application>
