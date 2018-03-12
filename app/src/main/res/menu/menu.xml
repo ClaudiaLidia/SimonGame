@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Simon's Rules" android:id="@+id/mrules"/>
+    <item android:title="About us" android:id="@+id/mus"/>
+</menu>

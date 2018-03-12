@@ -8,6 +8,8 @@ package com.yanes.assignment2;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -44,6 +46,29 @@ public class MainActivity extends Activity  implements View.OnClickListener {
         }
         startActivityForResult(intent, REQUEST_CODE_ADD);
         
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;}
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int itemId=item.getItemId();
+        if(itemId==R.id.mrules){
+            Intent intent=new Intent(this, Rules.class);
+            startActivity(intent);
+            return true;
+        }
+        else if(itemId==R.id.mus)
+        {
+            Intent intent=new Intent(this, Aboutus.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
