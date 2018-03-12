@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 
 /**
- * Created by LidiayClaudia on 12/03/2018.
- */
+ * Claudia and Lidia Yanes Garcia
+ * Assignment 22
+ * CSCI 4020
+ **/
 
 public class Aboutus extends Activity {
     protected void onCreate(final Bundle savedInstanceState) {

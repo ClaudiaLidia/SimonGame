@@ -20,6 +20,7 @@
         <activity android:name=".Secondv"/>
         <activity android:name=".Thirdv"/>
         <activity android:name=".Aboutus"/>
+        <activity android:name=".Rules"/>
     </application>
 
 </manifest>
