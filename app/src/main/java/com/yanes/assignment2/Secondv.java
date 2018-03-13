@@ -187,7 +187,7 @@ public class Secondv extends Activity implements View.OnClickListener {
             sequence.clear();
             my_sequence.clear();
             tv.setText("Highest score= "+ high_score);
-            Toast.makeText(this, "Level "+ score, Toast.LENGTH_SHORT).show();            count1 ++;
+            Toast.makeText(this, "Level "+ score, Toast.LENGTH_SHORT).show();
             count1 ++;
             updateTask = new UpdateTask();
             updateTask.execute();
