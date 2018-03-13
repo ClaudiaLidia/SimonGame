@@ -2,4 +2,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="Simon's Rules" android:id="@+id/mrules"/>
     <item android:title="About us" android:id="@+id/mus"/>
+    <item android:title="Credits" android:id="@+id/mcredits"/>
 </menu>
