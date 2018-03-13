@@ -67,8 +67,7 @@ public class MainActivity extends Activity  implements View.OnClickListener {
             Intent intent=new Intent(this, Aboutus.class);
             startActivity(intent);
             return true;
-        } else if(itemId==R.id.mcredits)
-        {
+        } else if(itemId==R.id.mcredits) {
             Intent intent=new Intent(this, Credits.class);
             startActivity(intent);
             return true;

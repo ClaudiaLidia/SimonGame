@@ -61,6 +61,7 @@ public class Secondv extends Activity implements View.OnClickListener {
     }
     private UpdateTask updateTask;
 
+    @Override
     protected void onPause() {
         super.onPause();
         if (updateTask != null) {
@@ -187,6 +188,7 @@ public class Secondv extends Activity implements View.OnClickListener {
             my_sequence.clear();
             tv.setText("Highest score= "+ high_score);
             Toast.makeText(this, "Level "+ score, Toast.LENGTH_SHORT).show();            count1 ++;
+            count1 ++;
             updateTask = new UpdateTask();
             updateTask.execute();
 

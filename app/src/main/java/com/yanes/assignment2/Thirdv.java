@@ -226,7 +226,6 @@ public class Thirdv extends Activity implements View.OnClickListener{
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                Log.i("hhh", "count=" + count1);
                 for ( count = 0; count < count1; count++) {
                     if(repe == true) {
                         Random rnd = new Random();

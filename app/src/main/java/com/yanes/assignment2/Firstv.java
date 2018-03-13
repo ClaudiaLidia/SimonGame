@@ -254,7 +254,6 @@ public class Firstv extends Activity implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
-        //Toast.makeText(this, "You cannot leave this page until the game is over!", Toast.LENGTH_SHORT).show();
         String str_high = Integer.toString(high_score);
         str_high = str_high.trim();
         MainActivity.Highest_score1= str_high;
