@@ -193,7 +193,7 @@ public class Thirdv extends Activity implements View.OnClickListener{
 
             Toast.makeText(this, "Level "+ score, Toast.LENGTH_SHORT).show();
 
-            if (count2 == 50) {
+            if (count2 == 200) {
                 count1++;
                 count2 = 700;
             }
@@ -267,6 +267,11 @@ public class Thirdv extends Activity implements View.OnClickListener{
         intent.putExtra(MainActivity.Highest_score3, str_high);
         setResult(RESULT_OK, intent);
         super.onBackPressed();
+    }
+    @Override
+    protected void onStop() {
+        onBackPressed();
+        super.onStop();
     }
 }
 

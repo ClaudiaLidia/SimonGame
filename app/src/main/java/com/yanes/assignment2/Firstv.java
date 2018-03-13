@@ -260,6 +260,9 @@ public class Firstv extends Activity implements View.OnClickListener {
         super.onBackPressed();
     }
 
-
-
+    @Override
+    protected void onStop() {
+        onBackPressed();
+        super.onStop();
+    }
 }

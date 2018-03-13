@@ -258,4 +258,9 @@ public class Secondv extends Activity implements View.OnClickListener {
         setResult(RESULT_OK, intent);
         super.onBackPressed();
     }
+    @Override
+    protected void onStop() {
+        onBackPressed();
+        super.onStop();
+    }
 }
