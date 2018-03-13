@@ -116,12 +116,11 @@ public class Secondv extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.bfstart && (start == 1)) {
-            Toast.makeText(this, "You have not lost yet", Toast.LENGTH_SHORT).show();
-        }
+
         if (view.getId() == R.id.bfstart && sequence.size() == my_sequence.size() && (start == 0)) {
             sequence.clear();
             my_sequence.clear();
+            Button button = (Button) findViewById(R.id.bfstart);
             start = 1;
             if (updateTask != null && updateTask.getStatus() == AsyncTask.Status.FINISHED) {
                 updateTask = null;
