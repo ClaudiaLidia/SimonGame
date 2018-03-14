@@ -86,13 +86,10 @@ public class MainActivity extends Activity  implements View.OnClickListener {
                 return;
             } else if (resultCode == RESULT_OK) {
                 if(Highest_score1!= null) {
-                    Log.i("hhh", "111111111111");
                     scores( 0,data);
                 } else if(Highest_score2!= null){
-                    Log.i("hhh", "222222");
                     scores( 1,data);
                 }else if(Highest_score3!= null){
-                    Log.i("hhh", "333333");
                     scores( 2,data);
                 }
 
