@@ -8,6 +8,7 @@ package com.yanes.assignment2;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -84,12 +85,14 @@ public class MainActivity extends Activity  implements View.OnClickListener {
                 Toast.makeText(this, "Cancelled ", Toast.LENGTH_SHORT).show();
                 return;
             } else if (resultCode == RESULT_OK) {
-                int value=0;
                 if(Highest_score1!= null) {
+                    Log.i("hhh", "111111111111");
                     scores( 0,data);
                 } else if(Highest_score2!= null){
+                    Log.i("hhh", "222222");
                     scores( 1,data);
                 }else if(Highest_score3!= null){
+                    Log.i("hhh", "333333");
                     scores( 2,data);
                 }
 
@@ -106,15 +109,12 @@ public class MainActivity extends Activity  implements View.OnClickListener {
         String high_score = data.getStringExtra(key_highest[value]);
         h = Integer.parseInt(high_score);
 
+
         if (total[value]< h) {
             total[value]= h;
         }
         TextView highscore = findViewById(key_id[value]);
         highscore.setText("The highest score in the "+key_position[value]+" game is " + total[value]);
-
-        Highest_score1= null;
-        Highest_score2= null;
-        Highest_score3= null;
 
     }
 

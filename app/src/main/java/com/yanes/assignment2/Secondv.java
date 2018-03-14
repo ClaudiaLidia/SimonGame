@@ -120,7 +120,6 @@ public class Secondv extends Activity implements View.OnClickListener {
         if (view.getId() == R.id.bfstart && sequence.size() == my_sequence.size() && (start == 0)) {
             sequence.clear();
             my_sequence.clear();
-            Button button = (Button) findViewById(R.id.bfstart);
             start = 1;
             if (updateTask != null && updateTask.getStatus() == AsyncTask.Status.FINISHED) {
                 updateTask = null;
@@ -170,8 +169,6 @@ public class Secondv extends Activity implements View.OnClickListener {
     }
 
     public void compare(){
-        String s1=my_sequence.toString();
-        String s2=sequence.toString();
         for (int a = 0; a < sequence.size(); a++) {
             if (!(my_sequence.get(a) == sequence.get(a))) {
                 equal = false;
@@ -255,6 +252,8 @@ public class Secondv extends Activity implements View.OnClickListener {
         Intent intent = new Intent(this, MainActivity.class);
         MainActivity.Highest_score2= str_high;
         intent.putExtra(MainActivity.Highest_score2, str_high);
+        MainActivity.Highest_score3=null;
+        MainActivity.Highest_score1=null;
         setResult(RESULT_OK, intent);
         super.onBackPressed();
     }

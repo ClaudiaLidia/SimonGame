@@ -172,8 +172,6 @@ public class Thirdv extends Activity implements View.OnClickListener{
     }
 
     public void compare(){
-        String s1=my_sequence.toString();
-        String s2=sequence.toString();
         for (int a = 0; a < sequence.size(); a++) {
             if (!(my_sequence.get(a) == sequence.get(a))) {
                 equal = false;
@@ -265,6 +263,8 @@ public class Thirdv extends Activity implements View.OnClickListener{
         MainActivity.Highest_score3= str_high;
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra(MainActivity.Highest_score3, str_high);
+        MainActivity.Highest_score2=null;
+        MainActivity.Highest_score1=null;
         setResult(RESULT_OK, intent);
         super.onBackPressed();
     }
