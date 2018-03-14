@@ -37,6 +37,7 @@
             android:layout_weight="1"
             android:textAlignment="center"
             android:layout_marginTop="8dp"
+            android:textSize="20sp"
             android:text="Lidia Yanes Garcia \n
     lyanesgarcia"
             android:textColor="#000" />
@@ -48,6 +49,7 @@
             android:textColor="#000"
             android:textAlignment="center"
             android:layout_marginTop="8dp"
+            android:textSize="20sp"
             android:text="Claudia Yanes Garcia \n
     cyanesgarcia" />
 
@@ -59,6 +61,7 @@
         android:layout_marginTop="45dp"
         android:layout_marginLeft="10dp"
         android:textColor="#000"
+        android:textSize="20sp"
         android:text="This project is the second assignment for CSCI 4020, the second course of Mobile App"
         />
 </LinearLayout>

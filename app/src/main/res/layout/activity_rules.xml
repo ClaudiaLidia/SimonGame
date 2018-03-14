@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFA07A">
     <TextView
         android:id="@+id/tvtitle"
         android:layout_width="match_parent"
@@ -20,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:textSize="30sp"
         android:text="First Variation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvtitle"
@@ -31,6 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvt1" />
 
@@ -41,16 +47,17 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:text="Second Variation"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvinfo1"
-        android:textColor="#DC143C"
-        />
+        android:textColor="#DC143C" />
 
     <TextView
         android:id="@+id/tvinfo2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#000"
+        android:textSize="20sp"
         android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvt2" />
@@ -64,8 +71,8 @@
         android:text="Third Variation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvinfo2"
-        android:textColor="#DC143C"
-        />
+        android:textSize="30sp"
+        android:textColor="#DC143C"/>
 
     <TextView
         android:id="@+id/tvinfo3"
@@ -73,7 +80,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvt3" />
 
 </android.support.constraint.ConstraintLayout>
+</ScrollView>
