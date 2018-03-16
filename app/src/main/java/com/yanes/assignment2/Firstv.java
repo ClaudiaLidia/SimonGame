@@ -43,6 +43,8 @@ public class Firstv extends Activity implements View.OnClickListener {
     ArrayList<Integer> my_sequence = new ArrayList<>();
     int count;
     int count1=1;
+    int count11 = 3;
+    int count2=700;
     ImageButton im;
     boolean equal= true;
 
@@ -53,7 +55,6 @@ public class Firstv extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
-
         soundLoaded = new HashSet<Integer>();
 
         Button button = (Button) findViewById(R.id.bfstart);
@@ -130,7 +131,6 @@ public class Firstv extends Activity implements View.OnClickListener {
                 Log.i("START", "task is already running");
             }
         } else if (view.getId() != R.id.bfstart && my_sequence.size()<sequence.size()&& (start==1) && updateTask.getStatus() == AsyncTask.Status.FINISHED) {
-
             int ii=0;
             if ((view.getId() == R.id.iyellow)) {
                 ii=0;
@@ -183,20 +183,41 @@ public class Firstv extends Activity implements View.OnClickListener {
             if(high_score<score){
                 high_score=score;
             }
+            my_sequence.clear();
+            if(MainActivity.activity == 1 || MainActivity.activity ==2) {
+                sequence.clear();
+            }
             tv.setText("The highest score is: "+ high_score);
             Toast.makeText(this, "Level "+ score, Toast.LENGTH_SHORT).show();
-            count1++;
+            if(MainActivity.activity == 2) {
+                if (count2 == 350) {
+                    count11++;
+                    count2 = 700;
+                } else {
+                    count2 -= 50;
+                }
+            }else {
+                count1++;
+            }
+
+
+
             updateTask = new UpdateTask();
             updateTask.execute();
-            my_sequence.clear();
         }else {
             Toast.makeText(this, "Lost", Toast.LENGTH_SHORT).show();
+
+            if(MainActivity.activity == 2){
+                count11=3;
+                count2 = 700;
+            }else{
+                count1 = 1;
+            }
             start=0;
             score=0;
             equal=true;
             sequence.clear();
             my_sequence.clear();
-            count1=1;
 
         }
     }
@@ -210,23 +231,67 @@ public class Firstv extends Activity implements View.OnClickListener {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            for ( count = 0; count < count1; count++) {
-                if(count ==sequence.size() && repe == true ) {
+            if(MainActivity.activity==0){
+                Firstv();
+            }else if(MainActivity.activity ==1){
+                Secondv();
+            }else{
+                Thirdv();
+            }
+
+            return null;
+
+        }
+        public void Firstv () {
+            for (count = 0; count < count1; count++) {
+                if (count == sequence.size() && repe == true) {
                     Random rnd = new Random();
                     i = rnd.nextInt(4);
                     sequence.add(i);
-                }else{
-                    i=sequence.get(count);
+                } else {
+                    i = sequence.get(count);
                 }
                 publishProgress(i);
-
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(700);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-            return null;
+        }
+        public void Secondv(){
+            for (count = 0; count < count1; count++) {
+                if (repe == true) {
+                    Random rnd = new Random();
+                    i = rnd.nextInt(4);
+                    sequence.add(i);
+                }
+
+                publishProgress(i);
+                try {
+                    Thread.sleep(700);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        public void Thirdv(){
+            for ( count = 0; count < count11; count++) {
+                if(repe == true) {
+                    Random rnd = new Random();
+                    i = rnd.nextInt(4);
+                    sequence.add(i);
+                }
+
+                publishProgress(i);
+
+                try {
+                    Thread.sleep(count2);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
 
         }
 
@@ -251,11 +316,8 @@ public class Firstv extends Activity implements View.OnClickListener {
     public void onBackPressed() {
         String str_high = Integer.toString(high_score);
         str_high = str_high.trim();
-        MainActivity.Highest_score1= str_high;
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra(MainActivity.Highest_score1, str_high);
-        MainActivity.Highest_score3=null;
-        MainActivity.Highest_score2=null;
+        intent.putExtra(MainActivity.Activity_KEY, str_high);
         setResult(RESULT_OK, intent);
         super.onBackPressed();
     }

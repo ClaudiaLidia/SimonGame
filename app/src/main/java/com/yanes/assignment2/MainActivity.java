@@ -18,9 +18,8 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity  implements View.OnClickListener {
     private static final int REQUEST_CODE_ADD = 100;
-    public static String Highest_score1= null;
-    public static String Highest_score2= null;
-    public static String Highest_score3= null;
+    public static int activity= 10;
+    public static String Activity_KEY= "activity";
     int total[] = {0, 0, 0};
 
     @Override
@@ -37,14 +36,17 @@ public class MainActivity extends Activity  implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        Intent intent = null;
+
         if (view.getId() == R.id.bfirstv) {
-            intent = new Intent(this, Firstv.class);
+            activity=0;
         } else if (view.getId() == R.id.bsecondv) {
-            intent = new Intent(this, Secondv.class);
+          activity=1;
         } else if (view.getId() == R.id.bthirdv) {
-            intent = new Intent(this, Thirdv.class);
+           activity=2;
         }
+
+        Intent intent = new Intent(this, Firstv.class);
+        intent.putExtra(Activity_KEY, activity);
         startActivityForResult(intent, REQUEST_CODE_ADD);
         
     }
@@ -85,34 +87,25 @@ public class MainActivity extends Activity  implements View.OnClickListener {
                 Toast.makeText(this, "Cancelled ", Toast.LENGTH_SHORT).show();
                 return;
             } else if (resultCode == RESULT_OK) {
-                if(Highest_score1!= null) {
-                    scores( 0,data);
-                } else if(Highest_score2!= null){
-                    scores( 1,data);
-                }else if(Highest_score3!= null){
-                    scores( 2,data);
+
+                int h = 0;
+                String[] key_position={"first", "second", "third"};
+                int[] key_id={R.id.text1, R.id.text2, R.id.text3};
+
+                String high_score = data.getStringExtra(Activity_KEY);
+                Log.i("high score", "high score" + high_score);
+                h = Integer.parseInt(high_score);
+
+
+                if (total[activity]< h) {
+                    total[activity]= h;
                 }
-
-
+                TextView highscore = findViewById(key_id[activity]);
+                highscore.setText("The highest score in the "+key_position[activity]+" game is " + total[activity]);
+activity=10;
             }
         }
     }
-    public void scores (int value, Intent data){
-        int h = 0;
-        String[] key_highest ={Highest_score1, Highest_score2, Highest_score3};
-        String[] key_position={"first", "second", "third"};
-        int[] key_id={R.id.text1, R.id.text2, R.id.text3};
 
-        String high_score = data.getStringExtra(key_highest[value]);
-        h = Integer.parseInt(high_score);
-
-
-        if (total[value]< h) {
-            total[value]= h;
-        }
-        TextView highscore = findViewById(key_id[value]);
-        highscore.setText("The highest score in the "+key_position[value]+" game is " + total[value]);
-
-    }
 
 }
