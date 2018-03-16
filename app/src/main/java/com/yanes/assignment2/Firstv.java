@@ -29,11 +29,7 @@ import java.util.Set;
 public class Firstv extends Activity implements View.OnClickListener {
     private SoundPool soundPool;
     private Set<Integer> soundLoaded;
-    int bell;
-    int bell1;
-    int bell2;
-    int bell3;
-    int []bells={bell, bell1, bell2, bell3};
+    int []bells={0, 0, 0, 0};
     int[] dcolor = {R.drawable.byellow, R.drawable.bblue, R.drawable.bred, R.drawable.bgreen};
     int[] dcoloroff = {R.drawable.byellowoff, R.drawable.bblueoff, R.drawable.bredoff, R.drawable.bgreenoff};
     int[] ids = {R.id.iyellow, R.id.iblue, R.id.ired, R.id.igreen};
@@ -96,10 +92,10 @@ public class Firstv extends Activity implements View.OnClickListener {
                 }
             }
         });
-        bell= soundPool.load(this, R.raw.bell,1);
-        bell1= soundPool.load(this, R.raw.bell1,1);
-        bell2= soundPool.load(this, R.raw.bell2,1);
-        bell3= soundPool.load(this, R.raw.bell3,1);
+        int bell= soundPool.load(this, R.raw.bell,1);
+        int bell1= soundPool.load(this, R.raw.bell1,1);
+        int bell2= soundPool.load(this, R.raw.bell2,1);
+        int bell3= soundPool.load(this, R.raw.bell3,1);
 
         bells= new int[]{bell, bell1, bell2, bell3};
 
