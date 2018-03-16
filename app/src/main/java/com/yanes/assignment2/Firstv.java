@@ -27,6 +27,7 @@ import java.util.Set;
 
 
 public class Firstv extends Activity implements View.OnClickListener {
+    Random rnd = new Random();
     private SoundPool soundPool;
     private Set<Integer> soundLoaded;
     int []bells={0, 0, 0, 0};
@@ -241,7 +242,7 @@ public class Firstv extends Activity implements View.OnClickListener {
         public void Firstv () {
             for (count = 0; count < count1; count++) {
                 if (count == sequence.size() && repe == true) {
-                    Random rnd = new Random();
+
                     i = rnd.nextInt(4);
                     sequence.add(i);
                 } else {
@@ -258,7 +259,6 @@ public class Firstv extends Activity implements View.OnClickListener {
         public void Secondv(){
             for (count = 0; count < count1; count++) {
                 if (repe == true) {
-                    Random rnd = new Random();
                     i = rnd.nextInt(4);
                     sequence.add(i);
                 }
@@ -275,7 +275,6 @@ public class Firstv extends Activity implements View.OnClickListener {
         public void Thirdv(){
             for ( count = 0; count < count11; count++) {
                 if(repe == true) {
-                    Random rnd = new Random();
                     i = rnd.nextInt(4);
                     sequence.add(i);
                 }
